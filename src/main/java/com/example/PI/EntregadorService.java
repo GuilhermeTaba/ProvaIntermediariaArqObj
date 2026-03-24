@@ -53,7 +53,7 @@ public class EntregadorService {
     public Entregador getEntregadorAleatorio() {
         List<Entregador> lista = entregadores.values()
                 .stream()
-                .filter(e -> Boolean.TRUE.equals(e.getDeleted()))
+                .filter(e -> Boolean.FALSE.equals(e.getDeleted()))
                 .toList();
 
         if (lista.isEmpty()) return null;
