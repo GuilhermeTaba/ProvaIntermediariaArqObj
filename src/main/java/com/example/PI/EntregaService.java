@@ -34,11 +34,14 @@ public class EntregaService {
             throw new RuntimeException("Cliente deletado");
         }
 
+
         Entregador entregador = entregadorService.getEntregadorAleatorio();
         if(entregador == null){
             throw  new RuntimeException("Nao possui entregador");
 
         }
+        entrega.setCliente(clienteService.getCliente(clienteCpf));
+        entrega.setEntregador(entregador);
         entrega.setId(id++);
         entrega.setDataSolicitacao(LocalDateTime.now());
 
