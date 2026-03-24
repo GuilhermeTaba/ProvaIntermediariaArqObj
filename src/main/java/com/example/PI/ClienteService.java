@@ -12,11 +12,15 @@ public class ClienteService {
 
 
     public Cliente postCliente(Cliente cliente){
+        if(!cliente.getEmail().contains("@")){
+            throw new RuntimeException("Nao tem email");
+        }
         if(cliente.getCpf() != null && cliente.getTelefone() != null &&
         cliente.getNome() != null && cliente.getEmail() != null){
             clientes.put(cliente.getCpf(),cliente);
             return cliente;
         }
+
         return null;
 
     }
@@ -29,7 +33,9 @@ public class ClienteService {
 
     }
     public void deleteCliente(Integer cpf){
-        clientes.remove(cpf);
+        Cliente cliente = clientes.get(cpf);
+        cliente.setDeleted(Boolean.TRUE);
+
     }
     public Cliente putCliente(Integer cpf, Cliente cliente){
         Cliente clienteUpdated = clientes.get(cpf);

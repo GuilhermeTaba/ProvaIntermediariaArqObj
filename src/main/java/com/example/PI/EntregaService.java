@@ -30,6 +30,9 @@ public class EntregaService {
         if(clienteService.getCliente(clienteCpf) == null){
             throw  new RuntimeException("Nao possui cliente");
         }
+        if(clienteService.getCliente(clienteCpf).getDeleted() == true){
+            throw new RuntimeException("Cliente deletado");
+        }
 
         Entregador entregador = entregadorService.getEntregadorAleatorio();
         if(entregador == null){
@@ -44,8 +47,8 @@ public class EntregaService {
     }
 
     public void deleteEntrega(Long id){
-        entregas.remove(id);
-
+        Entrega entrega = entregas.get(id);
+        entrega.setDeleted(Boolean.TRUE);
     }
     public Entrega putEntrega(Long id,Entrega entrega){
         Entrega entregaUpdated = entregas.get(id);

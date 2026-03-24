@@ -15,6 +15,10 @@ public class EntregadorService {
         return entregadores.get(documento);
     }
     public Entregador postEntregadores(Entregador entregador){
+        if(!entregador.getEmail().contains("@")){
+            return null;
+
+        }
         if(entregador.getDocumento() != null && entregador.getVeiculo() != null &&
                 entregador.getEmail() != null && entregador.getNome() != null){
             entregadores.put(entregador.getDocumento(),entregador);
@@ -24,7 +28,8 @@ public class EntregadorService {
 
     }
     public void deleteEntregador(Integer documento){
-        entregadores.remove(documento);
+        Entregador entregador = entregadores.get(documento);
+        entregador.setDeleted(Boolean.TRUE);
     }
     public Entregador putEntregador(Integer documento, Entregador entregador){
         Entregador entregadorUpdated = entregadores.get(documento);
@@ -46,7 +51,11 @@ public class EntregadorService {
         return entregadorUpdated;
     }
     public Entregador getEntregadorAleatorio() {
-        List<Entregador> lista = new ArrayList<>(entregadores.values());
+        List<Entregador> lista = entregadores.values()
+                .stream()
+                .filter(e -> Boolean.TRUE.equals(e.getDeleted()))
+                .toList();
+
         if (lista.isEmpty()) return null;
 
         Random rand = new Random();

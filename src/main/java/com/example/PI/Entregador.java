@@ -5,6 +5,7 @@ public class Entregador {
     private String email;
     private Integer documento;
     private String veiculo;
+    private Boolean deleted = false;
 
     public String getNome() {
         return nome;
@@ -36,5 +37,13 @@ public class Entregador {
 
     public void setVeiculo(String veiculo) {
         this.veiculo = veiculo;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }

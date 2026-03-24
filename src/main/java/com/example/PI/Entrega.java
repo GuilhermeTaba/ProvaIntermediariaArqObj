@@ -7,6 +7,19 @@ public class Entrega {
     private LocalDateTime dataSolicitacao;
     private Cliente cliente;
     private Entregador entregador;
+    private Boolean deleted = false;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
 
     public long getId() {
         return id;

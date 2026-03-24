@@ -6,9 +6,18 @@ public class Cliente {
     private String email;
     private Integer telefone;
     private Integer cpf;
+    private Boolean deleted = false;
 
     public String getNome() {
         return nome;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public void setNome(String nome) {
